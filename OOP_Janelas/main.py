@@ -12,10 +12,76 @@ def main():
     janela.title("Bhaskara - Equacao do segundo grau")
     janela.geometry("1080x720")
     janela.minsize(900, 600)
+    janela.configure(background="#191426")
 
     estilo = ttk.Style(janela)
-    estilo.configure("Titulo.TLabel", font=("Segoe UI", 18, "bold"))
-    estilo.configure("Subtitulo.TLabel", font=("Segoe UI", 10))
+    estilo.theme_use("clam")
+    fundo = "#191426"
+    painel_cor = "#241d36"
+    texto = "#f4efff"
+    destaque = "#c4a7ff"
+    campo = "#332a49"
+    estilo.configure(".", background=painel_cor, foreground=texto, font=("Segoe UI", 10))
+    estilo.configure("TFrame", background=painel_cor)
+    estilo.configure("TLabelframe", background=painel_cor, bordercolor="#51436f")
+    estilo.configure(
+        "TLabelframe.Label",
+        background=painel_cor,
+        foreground=destaque,
+        font=("Segoe UI", 10, "bold"),
+    )
+    estilo.configure("TLabel", background=painel_cor, foreground=texto)
+    estilo.configure(
+        "Titulo.TLabel",
+        background=painel_cor,
+        foreground=destaque,
+        font=("Segoe UI", 18, "bold"),
+    )
+    estilo.configure(
+        "Subtitulo.TLabel",
+        background=painel_cor,
+        foreground="#b7adc9",
+        font=("Segoe UI", 10),
+    )
+    estilo.configure("TEntry", fieldbackground=campo, foreground=texto)
+    estilo.configure(
+        "TCombobox",
+        fieldbackground=campo,
+        background=campo,
+        foreground=texto,
+        arrowcolor=destaque,
+    )
+    estilo.map(
+        "TCombobox",
+        fieldbackground=[("readonly", campo)],
+        foreground=[("readonly", texto)],
+        selectbackground=[("readonly", campo)],
+        selectforeground=[("readonly", texto)],
+    )
+    estilo.configure(
+        "TCheckbutton",
+        background=painel_cor,
+        foreground=texto,
+        indicatorcolor=campo,
+        focuscolor=destaque,
+    )
+    estilo.map(
+        "TCheckbutton",
+        background=[("active", painel_cor)],
+        foreground=[("active", destaque)],
+        indicatorcolor=[("selected", "#8b5cf6")],
+    )
+    estilo.configure(
+        "TButton",
+        background="#7c4dce",
+        foreground="#ffffff",
+        padding=8,
+        borderwidth=0,
+    )
+    estilo.map(
+        "TButton",
+        background=[("pressed", "#5b35a5"), ("active", "#9068dc")],
+    )
 
     painel = ttk.Frame(janela, padding=18)
     painel.grid(row=0, column=0, sticky="ns")

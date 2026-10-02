@@ -24,13 +24,21 @@ class Grafico:
         pontos,
         vertice,
         raizes,
-        tema="claro",
+        tema="roxo",
         mostrar_grade=True,
         mostrar_raizes=True,
         mostrar_vertice=True,
     ):
         x_valores, y_valores = pontos
         cores = {
+            "roxo": {
+                "fundo": "#f4efff",
+                "texto": "#302345",
+                "grade": "#d7c7f5",
+                "curva": "#7041c7",
+                "vertice": "#e07a3f",
+                "raizes": "#cb3d70",
+            },
             "claro": {
                 "fundo": "#ffffff",
                 "texto": "#263238",
@@ -48,7 +56,7 @@ class Grafico:
                 "raizes": "#ff788b",
             },
         }
-        paleta = cores.get(tema, cores["claro"])
+        paleta = cores.get(tema, cores["roxo"])
         self.figura.set_facecolor(paleta["fundo"])
         self.eixo.set_facecolor(paleta["fundo"])
         self.eixo.clear()

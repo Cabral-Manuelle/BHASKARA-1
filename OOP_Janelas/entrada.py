@@ -38,7 +38,7 @@ class Entrada:
         )
         self.tema = ttk.Combobox(
             self.frame,
-            values=("Claro", "Escuro"),
+            values=("Roxo", "Claro", "Escuro"),
             state="readonly",
             width=15,
         )
