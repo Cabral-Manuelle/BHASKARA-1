@@ -3,9 +3,10 @@ from tkinter import BooleanVar, messagebox, ttk
 
 
 class Entrada:
-    def __init__(self, parent, ao_calcular):
+    def __init__(self, parent, ao_calcular, ao_limpar):
         self.ao_calcular = ao_calcular
-        self.frame = ttk.LabelFrame(parent, text="Parametros", padding=12)
+        self.ao_limpar = ao_limpar
+        self.frame = ttk.LabelFrame(parent, text="💜 Parâmetros", padding=12)
         self.campos = {}
         valores_iniciais = {
             "a": "1",
@@ -25,15 +26,21 @@ class Entrada:
             ("quantidade", "Quantidade de pontos"),
         )
         for linha, (chave, rotulo) in enumerate(parametros):
-            ttk.Label(self.frame, text=rotulo).grid(
-                row=linha, column=0, sticky="w", padx=(0, 12), pady=5
+            ttk.Label(
+                self.frame, text=rotulo, style="Campo.TLabel"
+            ).grid(
+                row=linha,
+                column=0,
+                sticky="w",
+                padx=(0, 12),
+                pady=5,
             )
             campo = ttk.Entry(self.frame, width=18)
             campo.insert(0, valores_iniciais[chave])
             campo.grid(row=linha, column=1, sticky="ew", pady=5)
             self.campos[chave] = campo
 
-        ttk.Label(self.frame, text="Tema do grafico").grid(
+        ttk.Label(self.frame, text="Tema do gráfico", style="Campo.TLabel").grid(
             row=6, column=0, sticky="w", padx=(0, 12), pady=5
         )
         self.tema = ttk.Combobox(
@@ -63,7 +70,18 @@ class Entrada:
             self.frame,
             text="Calcular",
             command=self._enviar_coeficientes,
-        ).grid(row=10, column=0, columnspan=2, sticky="ew", pady=(12, 0))
+        ).grid(row=10, column=0, sticky="ew", padx=(0, 4), pady=(12, 0))
+        ttk.Button(
+            self.frame,
+            text="Limpar",
+            command=self._limpar,
+        ).grid(row=10, column=1, sticky="ew", padx=(4, 0), pady=(12, 0))
+
+    def _limpar(self):
+        for campo in self.campos.values():
+            campo.delete(0, "end")
+        self.ao_limpar()
+        self.campos["a"].focus_set()
 
     def _enviar_coeficientes(self):
         try:

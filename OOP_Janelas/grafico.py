@@ -16,6 +16,11 @@ class Grafico:
         self.eixo.grid(True, alpha=0.3)
         self.canvas.draw()
 
+    def limpar(self):
+        self.eixo.clear()
+        self._mostrar_vazio()
+        self.canvas.draw_idle()
+
     def mostrar_grafico(
         self,
         a,

@@ -9,21 +9,21 @@ from resultados import Resultados
 
 def main():
     janela = tk.Tk()
-    janela.title("Bhaskara - Equacao do segundo grau")
+    janela.title("Calculadora de Bhaskara 💜")
     janela.geometry("1080x720")
     janela.minsize(900, 600)
-    janela.configure(background="#191426")
 
     estilo = ttk.Style(janela)
     estilo.theme_use("clam")
-    fundo = "#191426"
-    painel_cor = "#241d36"
-    texto = "#f4efff"
-    destaque = "#c4a7ff"
-    campo = "#332a49"
+    fundo = "#f4efff"
+    painel_cor = fundo
+    texto = "#302345"
+    destaque = "#7041c7"
+    campo = "#ffffff"
+    janela.configure(background=fundo)
     estilo.configure(".", background=painel_cor, foreground=texto, font=("Segoe UI", 10))
     estilo.configure("TFrame", background=painel_cor)
-    estilo.configure("TLabelframe", background=painel_cor, bordercolor="#51436f")
+    estilo.configure("TLabelframe", background=painel_cor, bordercolor="#d7c7f5")
     estilo.configure(
         "TLabelframe.Label",
         background=painel_cor,
@@ -40,8 +40,20 @@ def main():
     estilo.configure(
         "Subtitulo.TLabel",
         background=painel_cor,
-        foreground="#b7adc9",
+        foreground="#6c5a82",
         font=("Segoe UI", 10),
+    )
+    estilo.configure(
+        "Campo.TLabel",
+        background=painel_cor,
+        foreground="#6540a4",
+        font=("Segoe UI", 9, "bold"),
+    )
+    estilo.configure(
+        "Resultado.TLabel",
+        background=painel_cor,
+        foreground=destaque,
+        font=("Segoe UI", 10, "bold"),
     )
     estilo.configure("TEntry", fieldbackground=campo, foreground=texto)
     estilo.configure(
@@ -92,17 +104,17 @@ def main():
     area_grafico.rowconfigure(0, weight=1)
     area_grafico.columnconfigure(0, weight=1)
 
-    ttk.Label(painel, text="Bhaskara", style="Titulo.TLabel").pack(anchor="w")
+    ttk.Label(painel, text="Bhaskara 💜", style="Titulo.TLabel").pack(anchor="w")
     ttk.Label(
         painel,
-        text="Calculadora de equacao do segundo grau",
+        text="Calculadora da equação do segundo grau",
         style="Subtitulo.TLabel",
         wraplength=270,
     ).pack(anchor="w", pady=(2, 16))
 
     quadro_entrada = ttk.Frame(painel)
     quadro_entrada.pack(fill="x")
-    quadro_resultados = ttk.LabelFrame(painel, text="Resultados", padding=12)
+    quadro_resultados = ttk.LabelFrame(painel, text="🟣 Resultados", padding=12)
     quadro_resultados.pack(fill="x", pady=(16, 0))
 
     resultados = Resultados(quadro_resultados)
@@ -139,7 +151,11 @@ def main():
             opcoes["mostrar_vertice"],
         )
 
-    entrada = Entrada(quadro_entrada, calcular)
+    def limpar():
+        resultados.limpar()
+        grafico.limpar()
+
+    entrada = Entrada(quadro_entrada, calcular, limpar)
     entrada.frame.pack(fill="x")
 
     janela.mainloop()
