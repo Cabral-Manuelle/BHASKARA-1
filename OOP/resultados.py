@@ -1,5 +1,7 @@
 class Resultados:
+    """Classe responsável por imprimir os resultados dos cálculos no terminal."""
     def mostrar_resultados(self, a, b, c, delta, raizes, vertice):
+        """Apresenta no ecrã a equação formatada, o valor de delta, as raízes e as coordenadas do vértice."""
         print("\nResultados da equacao:")
         print(f"Equacao: {a:g}x^2 + {b:g}x + {c:g} = 0")
         print(f"Delta: {delta:g}")

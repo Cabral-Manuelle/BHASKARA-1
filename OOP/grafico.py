@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 
 
 class Grafico:
+    """Classe responsavel por gerar e mostrar o grafico da equacao."""
     def mostrar_grafico(self, a, b, c, pontos, vertice, raizes):
+        """Plota o grafico da parabola indicando o vertice e as raizes."""
         x_valores, y_valores = pontos
         figura, eixo = plt.subplots()
         eixo.plot(x_valores, y_valores, label="y = ax^2 + bx + c", color="teal")

@@ -5,6 +5,7 @@ from resultados import Resultados
 
 
 def main():
+    """Funcao principal que inicia a execucao do programa e orquestra as classes."""
     a, b, c = Entrada().obter_coeficientes()
     calculos = Calculos(a, b, c)
 

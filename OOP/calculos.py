@@ -2,19 +2,24 @@ import math
 
 
 class Calculos:
+    """Classe responsavel por realizar os calculos matematicos da equacao do 2 grau."""
     def __init__(self, a, b, c):
+        """Inicializa os coeficientes a, b e c da equacao."""
         self.a = a
         self.b = b
         self.c = c
 
     def _validar_a(self):
+        """Verifica se o coeficiente a e diferente de zero."""
         if self.a == 0:
             raise ValueError("O coeficiente a nao pode ser zero.")
 
     def calcular_delta(self):
+        """Calcula e retorna o valor de delta (discriminante)."""
         return self.b**2 - 4 * self.a * self.c
 
     def calcular_raizes(self, delta=None):
+        """Calcula e retorna as raizes da equacao usando a formula de Bhaskara."""
         self._validar_a()
         if delta is None:
             delta = self.calcular_delta()
@@ -28,6 +33,7 @@ class Calculos:
         )
 
     def calcular_vertice(self, delta=None):
+        """Calcula as coordenadas x e y do vertice da parabola."""
         self._validar_a()
         if delta is None:
             delta = self.calcular_delta()
@@ -37,6 +43,7 @@ class Calculos:
         return x_vertice, y_vertice
 
     def calcular_pontos(self, quantidade=201):
+        """Gera e retorna uma lista de pontos (x, y) para a construcao do grafico."""
         self._validar_a()
         delta = self.calcular_delta()
         x_vertice, _ = self.calcular_vertice(delta)
