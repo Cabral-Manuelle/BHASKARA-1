@@ -78,8 +78,15 @@ class Entrada:
         ).grid(row=10, column=1, sticky="ew", padx=(4, 0), pady=(12, 0))
 
     def _limpar(self):
-        for campo in self.campos.values():
+        for chave, campo in self.campos.items():
             campo.delete(0, "end")
+            campo.insert(0, {"a": "1", "b": "-3", "c": "2", "x_min": "-10", "x_max": "10", "quantidade": "401"}[chave])
+
+        self.tema.set("Roxo")
+        self.mostrar_grade.set(True)
+        self.mostrar_raizes.set(True)
+        self.mostrar_vertice.set(True)
+
         self.ao_limpar()
         self.campos["a"].focus_set()
 
